@@ -31,7 +31,7 @@ void qs(int low, int high, vector<int> &arr)
   if (low < high)
   {
     int pIndex = partition(low, high, arr);
-    qs(low, pIndex, arr);
+    qs(low, pIndex-1, arr);
     qs(pIndex + 1, high, arr);
   }
 }
