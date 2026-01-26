@@ -26,12 +26,12 @@ public:
     {
       if (arr[j] <= pivot)
       {
-        i++;
+        i++;               // 'i' will after incrementing simply go to the number greater than the pivot and replace with the small number('j' is pointing to this number) found as compared to the pivot.
         swap(arr[i], arr[j]);
       }
     }
 
-    swap(arr[i + 1], arr[high]);
+    swap(arr[i + 1], arr[high]);  // this is required for high to place to the correct position and then return the i+1 because i is pointing to the number smaller than the pivot and i+q is pointing to the number greater than the pivot that's why we will be storing pivot at i+1 so that it's go to it's correct position.
 
     return i + 1;
   }
