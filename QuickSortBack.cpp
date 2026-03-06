@@ -31,7 +31,7 @@ public:
       }
     }
 
-    swap(arr[i + 1], arr[high]);  // this is required for high to place to the correct position and then return the i+1 because i is pointing to the number smaller than the pivot and i+q is pointing to the number greater than the pivot that's why we will be storing pivot at i+1 so that it's go to it's correct position.
+    swap(arr[i + 1], arr[high]);  // this is required for high to place to the correct position and then return the i+1 because i is pointing to the number smaller than the pivot and i+1 is pointing to the number greater than the pivot that's why we will be storing pivot at i+1 so that it's go to it's correct position.
 
     return i + 1;
   }

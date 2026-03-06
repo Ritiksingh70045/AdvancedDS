@@ -63,3 +63,8 @@ int main()
 
   return 0;
 }
+
+
+//Time Complexity: O(E log E) where E is the number of edges and V is the number of vertices. This is because in the worst case, we will be adding all the edges to the priority queue and each insertion and deletion operation in the priority queue takes O(log V) time.
+
+//! Note : in connected graph E <= V^2 so it might be written as ElogV as well. But in the worst case, it will be ElogE because we are sorting the edges based on their weights and in the worst case, we will be adding all the edges to the priority queue and each insertion and deletion operation in the priority queue takes O(log V) time.

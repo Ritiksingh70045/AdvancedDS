@@ -134,3 +134,5 @@ int main()
 
   return 0;
 }
+
+//Time Complexity: O(E log E) where E is the number of edges and V is the number of vertices. This is because in the worst case, we will be adding all the edges to the priority queue and each insertion and deletion operation in the priority queue takes O(log V) time.
