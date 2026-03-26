@@ -1,0 +1,7 @@
+/* 
+      An abstract class contains at least one pure virtual function.
+      Objects of an abstract class cannot be instantiated.
+      Derived classes must implement the pure virtual functions.
+      It provides a common interface to achieve abstraction.
+
+*/
