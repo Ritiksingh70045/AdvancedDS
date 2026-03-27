@@ -12,7 +12,7 @@ string postfixToPrefix(string postfix)
 
     if (isalnum(c))
     {
-      s.push(string(1, c));
+      s.push(string(1, c));         // way to convert a character to string
     }
     else
     {

@@ -4,18 +4,14 @@ using namespace std;
 class Solution
 {
 public:
-  // Returns all prime numbers <= n using Sieve of Eratosthenes
   vector<int> findAllPrimes(int n)
   {
 
-    // Mark all numbers as prime initially
     vector<int> prime(n + 1, 1);
 
-    // 0 and 1 are not prime
     prime[0] = prime[1] = 0;
 
-    // Sieve: remove multiples
-    for (int i = 2; i <= sqrt(n); ++i)
+    for (int i = 2; i * i <= n; ++i)
     {
       if (prime[i])
       {
@@ -26,7 +22,6 @@ public:
       }
     }
 
-    // Collect primes
     vector<int> ans;
     for (int i = 2; i <= n; ++i)
     {
