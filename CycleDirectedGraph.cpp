@@ -12,7 +12,7 @@ bool solve(int node, vector<int> &vis, vector<int> &pathVis, vector<vector<int>>
       if (solve(nbr, vis, pathVis, adj))
         return true;
     }
-    else if (pathVis[node])
+    else if (pathVis[nbr])
       return true;
   }
   pathVis[node] = 0;
