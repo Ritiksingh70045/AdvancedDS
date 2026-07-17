@@ -14,7 +14,7 @@ public:
       long double length = arr[i + 1] - arr[i];
       pq.push({length, i});
     }
-
+    vector<int> howMany(n , 0);
     for (int gasStations = 1; gasStations <= k; gasStations++)
     {
       auto top = pq.top();
@@ -33,8 +33,8 @@ public:
 
 int main()
 {
-  vector<int> arr = {1, 2, 3, 4, 5};
-  int k = 4;
+  vector<int> arr = {1, 2, 3, 4, 7};
+  int k = 2;
   Solution obj;
   long double ans = obj.minimiseMaxDistance(arr, k);
   cout << "The answer is: " << ans << "\n";
