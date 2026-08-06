@@ -16,6 +16,7 @@ bool solve(int node, vector<int> &vis, vector<int> &pathVis, vector<vector<int>>
       return true;
   }
   pathVis[node] = 0;
+  return false;
 }
 int main()
 {
@@ -36,8 +37,7 @@ int main()
   {
     if (!vis[i])
     {
-      bool ans = solve(i, vis, pathVis, adj);
-      if (ans == true)
+      if (solve(i, vis, pathVis, adj))
       {
         cout << "true";
         return 0;
