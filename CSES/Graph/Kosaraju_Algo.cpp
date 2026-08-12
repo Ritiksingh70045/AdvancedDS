@@ -4,89 +4,131 @@ using namespace std;
 class Solution
 {
 private:
-  // Step 1: Perform DFS and store nodes in stack by finishing time
-  void dfs(int node, vector<int> &vis, vector<int> adj[], stack<int> &st)
+  // DFS on original graph
+  // Store nodes according to finishing time
+  void dfs1(int node, vector<int> adj[], vector<int> &vis, stack<int> &st)
   {
     vis[node] = 1;
-    for (auto it : adj[node])
+
+    for (int nei : adj[node])
     {
-      if (!vis[it])
+      if (!vis[nei])
       {
-        dfs(it, vis, adj, st);
+        dfs1(nei, adj, vis, st);
       }
     }
-    // Push the node into stack after visiting all neighbors
+
+    // Push after all neighbours are processed
     st.push(node);
   }
 
-  // Step 2: Perform DFS on transposed graph
-  void dfs3(int node, vector<int> &vis, vector<int> adjT[])
+  // DFS on transposed graph
+  void dfs2(int node, vector<int> adjT[], vector<int> &vis)
   {
     vis[node] = 1;
-    for (auto it : adjT[node])
+
+    for (int nei : adjT[node])
     {
-      if (!vis[it])
+      if (!vis[nei])
       {
-        dfs3(it, vis, adjT);
+        dfs2(nei, adjT, vis);
       }
     }
   }
 
 public:
-  // Function to find number of strongly connected components
   int kosaraju(int V, vector<int> adj[])
   {
+
+    // --------------------------------
+    // STEP 1: DFS + Finishing Time
+    // --------------------------------
+
     vector<int> vis(V, 0);
     stack<int> st;
 
-    // Step 1: Do DFS to fill stack by finishing times
     for (int i = 0; i < V; i++)
     {
       if (!vis[i])
       {
-        dfs(i, vis, adj, st);
+        dfs1(i, adj, vis, st);
       }
     }
 
-    // Step 2: Build the transpose graph
+    // --------------------------------
+    // STEP 2: Reverse / Transpose Graph
+    // --------------------------------
+
     vector<int> adjT[V];
-    for (int i = 0; i < V; i++)
+
+    for (int u = 0; u < V; u++)
     {
-      vis[i] = 0; // reset visited
-      for (auto it : adj[i])
+
+      // Reset visited array
+      vis[u] = 0;
+
+      for (int v : adj[u])
       {
-        adjT[it].push_back(i); // reverse edge
+        // Original: u -> v
+        // Transpose: v -> u
+        adjT[v].push_back(u);
       }
     }
 
-    // Step 3: Process stack to count SCCs
+    // --------------------------------
+    // STEP 3: DFS in decreasing
+    //         finishing time
+    // --------------------------------
+
     int scc = 0;
+
     while (!st.empty())
     {
+
       int node = st.top();
       st.pop();
+
       if (!vis[node])
       {
+
+        // One complete DFS = one SCC
         scc++;
-        dfs3(node, vis, adjT);
+
+        dfs2(node, adjT, vis);
       }
     }
+
     return scc;
   }
 };
+
 int main()
 {
-  int n = 5;
-  int edges[5][2] = {{1, 0}, {0, 2}, {2, 1},  {0, 3}, {3, 4}};
 
-  vector<int> adj(n);
-  for (int i = 0; i < 5; i++)
+  int V = 5;
+
+  vector<vector<int>> edges = {
+      {1, 0},
+      {0, 2},
+      {2, 1},
+      {0, 3},
+      {3, 4}};
+
+  vector<int> adj[V];
+
+  for (auto edge : edges)
   {
-    adj[edges[i][0]].push_back(edges[i][1]);
+    int u = edge[0];
+    int v = edge[1];
+
+    adj[u].push_back(v);
   }
 
   Solution obj;
-  int ans = obj.kosaraju(n, adj);
-  cout << "The number of strongly connected components is: " << ans << endl;
+
+  cout << "Number of SCCs: "
+       << obj.kosaraju(V, adj)
+       << endl;
+
   return 0;
 }
