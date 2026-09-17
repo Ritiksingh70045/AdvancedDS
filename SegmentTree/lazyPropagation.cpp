@@ -81,7 +81,7 @@ public:
       seg[ind] += (high - low + 1) * lazy[ind];
       // propogate the lazy update downwards
       // for the remaining nodes to get updated
-      if (low != high)
+      if (low != high)    // have  children
       {
         lazy[2 * ind + 1] += lazy[ind];
         lazy[2 * ind + 2] += lazy[ind];
