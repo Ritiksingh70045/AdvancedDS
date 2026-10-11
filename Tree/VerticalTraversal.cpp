@@ -29,8 +29,8 @@ public:
       todo.pop();
 
       Node *temp = p.first;
-      int x = p.second.first;
-      int y = p.second.second;
+      int x = p.second.first;  // col of the current node
+      int y = p.second.second;  // row of the current node
 
       nodes[x][y].insert(temp->data);
 
